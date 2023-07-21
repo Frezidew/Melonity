@@ -29,7 +29,7 @@ var AutoLotus;
         //     const element = items[index];
         //     console.log(element.GetName())
         // }
-        var lotus = localHero.GetItem("famango", true) ? localHero.GetItem("famango", true) : localHero.GetItem("famango", true);
+        var lotus = localHero.GetItem("item_famango", true) ? localHero.GetItem("item_famango", true) : localHero.GetItem("item_famango", true);
         if (!localPlayer || !localHero) {
             return;
         }
