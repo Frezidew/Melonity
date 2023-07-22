@@ -12,6 +12,7 @@ var AutoBuyWards;
         var localHero = EntitySystem.GetLocalHero();
         var localPlayer = EntitySystem.GetLocalPlayer();
         var Wards = GameRules.CanPurchaseItem("item_ward_observer") ? GameRules.CanPurchaseItem("item_ward_observer") : GameRules.CanPurchaseItem("item_ward_sentry");
+        var WardsSentry = GameRules.CanPurchaseItem("item_ward_sentry") ? GameRules.CanPurchaseItem("item_ward_sentry") : GameRules.CanPurchaseItem("item_ward_observer");
         if (!localPlayer || !localHero) {
             return;
         }
