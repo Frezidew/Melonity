@@ -4,7 +4,7 @@ var AutoBuyWards;
     AutoBuyWards.exampleScript.OnScriptLoad = function () {
         console.log('AutoBuyWards complite');
     };
-    var IsAutoBuyActive = Menu.AddToggle(['Frezidevv'], 'AutoBuyWards', true);
+    var IsAutoBuyActive = Menu.AddToggle(['Frezidew'], 'AutoBuyWards', true);
     AutoBuyWards.exampleScript.OnUpdate = function () {
         if (!GameRules.IsActiveGame) {
             return;
