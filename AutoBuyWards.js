@@ -11,13 +11,13 @@ var AutoBuyWards;
         }
         var localHero = EntitySystem.GetLocalHero();
         var localPlayer = EntitySystem.GetLocalPlayer();
-        var Wards = GameRules.CanPurchaseItem("item_ward_observer") ? GameRules.CanPurchaseItem("item_ward_observer") : GameRules.CanPurchaseItem("item_ward_sentry");
-        var WardsSentry = GameRules.CanPurchaseItem("item_ward_sentry") ? GameRules.CanPurchaseItem("item_ward_sentry") : GameRules.CanPurchaseItem("item_ward_sentry");
-        if (!localPlayer || !localHero) {
-            return;
+        if (GameRules.CanPurchaseItem('item_ward_observer')) {
+            localPlayer.PrepareUnitOrders(Enum.UnitOrder.DOTA_UNIT_ORDER_PURCHASE_ITEM, null, null, 42, Enum.PlayerOrderIssuer
+                .DOTA_ORDER_ISSUER_PASSED_UNIT_ONLY, localHero);
         }
-        if (Wards && WardsSentry) {
-            var Buy = localPlayer.PrepareUnitOrders(Enum.UnitOrder.DOTA_UNIT_ORDER_PURCHASE_ITEM, null, null, 42, Enum.PlayerOrderIssuer.DOTA_ORDER_ISSUER_PASSED_UNIT_ONLY, localHero);
+        if (GameRules.CanPurchaseItem('item_ward_sentry')) {
+            localPlayer.PrepareUnitOrders(Enum.UnitOrder.DOTA_UNIT_ORDER_PURCHASE_ITEM, null, null, 42, Enum.PlayerOrderIssuer
+                .DOTA_ORDER_ISSUER_PASSED_UNIT_ONLY, localHero);
         }
     };
 })(AutoBuyWards || (AutoBuyWards = {}));
