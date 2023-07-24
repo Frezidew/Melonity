@@ -21,7 +21,7 @@ var AutoLotus;
         }
         var localHero = EntitySystem.GetLocalHero();
         var localPlayer = EntitySystem.GetLocalPlayer();
-        var lotus = localHero.GetItem("item_famango", true) ? localHero.GetItem("item_famango", true) : localHero.GetItem("item_great_famango", true) ? localHero.GetItem("item_greater_famango", true) : localHero.GetItem("item_great_famango", true);
+        var lotus = localHero.GetItem("item_famango", true) ? localHero.GetItem("item_famango", true) : localHero.GetItem("item_greater_famango", true) ? localHero.GetItem("item_great_famango", true) : localHero.GetItem("item_greater_famango", true);
         if (!localPlayer || !localHero) {
             return;
         }
