@@ -1,26 +1,27 @@
 var AutoLotus;
-(function (AutoLotus) {
-    AutoLotus.exampleScript = {};
-    AutoLotus.exampleScript.OnScriptLoad = function () {
-        console.log('AutoLotosFrez complite');
+(function (AutoLotus_1) {
+    AutoLotus_1.exampleScript = {};
+    AutoLotus_1.exampleScript.OnScriptLoad = function () {
+        console.log("AutoLotosFrez complite");
     };
-    var AutoLotos = Menu.AddToggle(['Frezidevv'], 'AutoLotos', true);
-    var HealthLotus = Menu.AddSlider(['Frezidevv'], 'Хп для активации', 10, 1000, 100, 10);
-    AutoLotus.exampleScript.OnUpdate = function () {
-        if (AutoLotos.GetValue() != true) {
+    var AutoLotus = Menu.AddToggle(["Frezidevv"], "Enable", false)
+        .SetNameLocale("ru", "Включить")
+        .OnChange(function (state) { return (AutoLotus = state.newValue); })
+        .GetValue();
+    var HealthLotus = Menu.AddSlider(["Frezidevv"], "Хп для активации", 10, 1000, 100, 10);
+    AutoLotus_1.exampleScript.OnUpdate = function () {
+        if (!AutoLotus)
             return;
-        }
     };
-    AutoLotus.exampleScript.OnUpdate = function () {
+    AutoLotus_1.exampleScript.OnUpdate = function () {
         if (!GameRules.IsActiveGame) {
             return;
         }
         var localHero = EntitySystem.GetLocalHero();
         var localPlayer = EntitySystem.GetLocalPlayer();
-        var lotus = localHero.GetItem("item_famango", true) ? localHero.GetItem("item_famango", true) : localHero.GetItem("item_great_famango", true) ? localHero.GetItem("item_greater_famango", true) : localHero.GetItem("item_famango", true);
-        if (!localPlayer || !localHero) {
-            return;
-        }
+        var lotus = localHero.GetItem("item_greater_famango", true) ||
+            localHero.GetItem("item_great_famango", true) ||
+            localHero.GetItem("item_famango", true);
         if (localHero.GetHealth() > HealthLotus.GetValue() - 1) {
             return;
         }
