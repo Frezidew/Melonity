@@ -4,11 +4,10 @@ var AutoGlimmer;
     exampleScript.OnScriptLoad = function () {
         console.log("AutoGlimmer complite");
     };
-    var isScriptActive = Menu.AddToggle(["FrezGlimmer"], "AutoGlimmer", false)
+    var isScriptActive = Menu.AddToggle(["FrezGlimmer"], "AutoGlimmer", false) && Menu.AddSlider(["FrezGlimmer"], "AutoGlimmer", 1, 100, 30, 1)
         .SetNameLocale("ru", "Автоматический сейф Глиммером")
         .OnChange(function (state) { return (isScriptActive = state.newValue); })
         .GetValue();
-    Menu.AddSlider(["AutoGlimmer"], "AutoGlimmer", 1, 100, 30, 1);
     exampleScript.OnUpdate = function () {
         if (!GameRules.IsActiveGame || !isScriptActive) {
             return;
