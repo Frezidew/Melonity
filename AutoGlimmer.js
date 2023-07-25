@@ -4,25 +4,14 @@ var AutoGlimmer;
     exampleScript.OnScriptLoad = function () {
         console.log("AutoGlimmer complite");
     };
-    var localHero = EntitySystem.GetLocalHero();
-    var localPlayer = EntitySystem.GetLocalPlayer();
-    var AllyHeroes = [];
-    var heroes = EntitySystem.GetHeroesList();
-    AutoGlimmer.Glimmer.OnGameEnd = function () {
-        AllyHeroes = [];
-        localHero = null;
-        localPlayer = null;
-        for (var _i = 0, heroes_1 = heroes; _i < heroes_1.length; _i++) {
-            var allyHero = heroes_1[_i];
-            if (allyHero.IsSameTeam) {
-                AllyHeroes.push(allyHero);
-            }
-        }
-    };
     var isScriptActive = Menu.AddToggle(["FrezGlimmer"], "AutoGlimmer", false)
         .SetNameLocale("ru", "Автоматический сейф Глиммером")
         .OnChange(function (state) { return (isScriptActive = state.newValue); })
         .GetValue();
+    var localHero = EntitySystem.GetLocalHero();
+    var localPlayer = EntitySystem.GetLocalPlayer();
+    var AllyHeroes = [];
+    var heroes = EntitySystem.GetHeroesList();
     function percentHp(percent) {
         for (var _i = 0, AllyHeroes_1 = AllyHeroes; _i < AllyHeroes_1.length; _i++) {
             var hero = AllyHeroes_1[_i];
@@ -34,8 +23,19 @@ var AutoGlimmer;
             }
         }
     }
-    // тут нужно сделать злоебучий слайдер с процентами
     var ChosenProcent = Menu.AddSlider(["FrezGlimmer"], "AutoGlimmer", 1, 100, 30, 1);
+    AutoGlimmer.Glimmer.OnGameEnd = function () {
+        AllyHeroes = [];
+        localHero = null;
+        localPlayer = null;
+        for (var _i = 0, heroes_1 = heroes; _i < heroes_1.length; _i++) {
+            var allyHero = heroes_1[_i];
+            if (allyHero.IsSameTeam) {
+                AllyHeroes.push(allyHero);
+            }
+        }
+    };
+    // тут нужно сделать злоебучий слайдер с процентами
     var HpPercent = percentHp(ChosenProcent);
     exampleScript.OnUpdate = function () {
         if (!GameRules.IsActiveGame || !isScriptActive) {
