@@ -9,7 +9,6 @@ var AutoGlimmer;
     var AllyHeroes = [];
     var heroes = EntitySystem.GetHeroesList();
     AutoGlimmer.Glimmer.OnGameEnd = function () {
-        isScriptActive = false;
         AllyHeroes = [];
         localHero = null;
         localPlayer = null;
