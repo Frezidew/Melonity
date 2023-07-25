@@ -35,7 +35,7 @@ var AutoGlimmer;
         if (glimmer = undefined) {
             return;
         } // если глимер не найден то return
-        var rangeGlimmer = glimmer.GetCastRange() + localHero.GetCastRangeBonus(); // если глимер найден то получаем его каст рэндж
+        var rangeGlimmer = 600 + localHero.GetCastRangeBonus(); // если глимер найден то получаем его каст рэндж
         for (var _i = 0, AllyHeroes_1 = AllyHeroes; _i < AllyHeroes_1.length; _i++) { // идём по массиву из союзных героев
             var allyHero = AllyHeroes_1[_i];
             var offsetHp = allyHero.GetMaxHealth() - allyHero.GetHealth(); // записываем в переменную недостающее здоровье 1000 - 300 = 700
