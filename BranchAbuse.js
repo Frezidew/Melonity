@@ -20,7 +20,7 @@ var BranchAbuse;
         localplayer = null;
     };
     branch.OnUpdate = function () {
-        if (Hero != null) {
+        if (localhero != null) {
             return;
         }
         if (!enable) {
