@@ -18,18 +18,17 @@ var PredictScript;
         if (!enable) {
             return;
         }
-        console.log(localhero);
         var Heroes = EntitySystem.GetHeroesList();
-        if (KeyBind.IsKeyDown()) {
+        if (KeyBind.IsKeyDownOnce()) {
             var NearHero = Input.GetNearestHeroToCursor(Enum.TeamType.TEAM_ENEMY);
-            var NearHeroPos = NearHero.GetAbsOrigin();
-            if (NearHero.GetAbsOrigin().Distance(localhero.GetAbsOrigin()) <= 1300) {
-                console.log("Получил местоположение героя");
-                localplayer.PrepareUnitOrders(Enum.UnitOrder.DOTA_UNIT_ORDER_CAST_POSITION, null, NearHeroPos, localhero.GetAbility("pudge_meat_hook"), Enum.PlayerOrderIssuer.DOTA_ORDER_ISSUER_HERO_ONLY, localhero);
-                console.log("Хук нашёл, ренжу получил");
+            var NearHeroPos = NearHero.GetAbsOrigin().Rotated(10);
+            var x = NearHeroPos.x, y = NearHeroPos.y;
+            Renderer.DrawFilledRect(x, y, 10, 10);
+            if (NearHero.GetAbsOrigin().Distance(localhero.GetAbsOrigin()) <=
+                1300 + localhero.GetCastRangeBonus()) {
             }
-            else {
-                console.log("Хук не нашёл");
+            {
+                localplayer.PrepareUnitOrders(Enum.UnitOrder.DOTA_UNIT_ORDER_CAST_POSITION, null, NearHeroPos, localhero.GetAbility("pudge_meat_hook"), Enum.PlayerOrderIssuer.DOTA_ORDER_ISSUER_HERO_ONLY, localhero);
             }
         }
     };
