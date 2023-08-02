@@ -22,6 +22,7 @@ var PredictScript;
         if (KeyBind.IsKeyDownOnce()) {
             var NearHero = Input.GetNearestHeroToCursor(Enum.TeamType.TEAM_ENEMY);
             var NearHeroPos = NearHero.GetAbsOrigin();
+            console.log(localhero.GetCastRangeBonus());
             if (NearHero.GetAbsOrigin().Distance(localhero.GetAbsOrigin()) <= 1300 + localhero.GetCastRangeBonus()) {
             }
             {
