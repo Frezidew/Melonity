@@ -22,10 +22,7 @@ var PredictScript;
         if (KeyBind.IsKeyDownOnce()) {
             var NearHero = Input.GetNearestHeroToCursor(Enum.TeamType.TEAM_ENEMY);
             var NearHeroPos = NearHero.GetAbsOrigin();
-            var x = NearHeroPos.x, y = NearHeroPos.y;
-            Renderer.DrawFilledRect(x, y, 10, 10);
-            if (NearHero.GetAbsOrigin().Distance(localhero.GetAbsOrigin()) <=
-                1300 + localhero.GetCastRangeBonus()) {
+            if (NearHero.GetAbsOrigin().Distance(localhero.GetAbsOrigin()) <= 1300 + localhero.GetCastRangeBonus()) {
             }
             {
                 localplayer.PrepareUnitOrders(Enum.UnitOrder.DOTA_UNIT_ORDER_CAST_POSITION, null, NearHeroPos, localhero.GetAbility("pudge_meat_hook"), Enum.PlayerOrderIssuer.DOTA_ORDER_ISSUER_HERO_ONLY, localhero);
