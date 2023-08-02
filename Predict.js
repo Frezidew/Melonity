@@ -21,7 +21,7 @@ var PredictScript;
         var Heroes = EntitySystem.GetHeroesList();
         if (KeyBind.IsKeyDownOnce()) {
             var NearHero = Input.GetNearestHeroToCursor(Enum.TeamType.TEAM_ENEMY);
-            var NearHeroPos = NearHero.GetAbsOrigin().Rotated(10);
+            var NearHeroPos = NearHero.GetAbsOrigin();
             var x = NearHeroPos.x, y = NearHeroPos.y;
             Renderer.DrawFilledRect(x, y, 10, 10);
             if (NearHero.GetAbsOrigin().Distance(localhero.GetAbsOrigin()) <=
