@@ -8,18 +8,22 @@ var PredictScript;
         .SetGeneral(true)
         .GetValue();
     KeyBind = Menu.AddKeyBind(PATH, "Bind", Enum.ButtonCode.KEY_NONE);
+    var localhero;
+    var localplayer;
     PredictScript.prescript.OnGameStart = function () {
-        // это чтоб у тебя фпс не просаживался
-        //если ты это не будешь в энжин засовывать, тебя матвей в жопу выебет
-        //Вот эта вся хуня снизу получает расстояние до героя возле курсора
-        var localhero = EntitySystem.GetLocalHero();
-        var localplayer = EntitySystem.GetLocalPlayer();
+        localhero = EntitySystem.GetLocalHero();
+        localplayer = EntitySystem.GetLocalPlayer();
+    };
+    PredictScript.prescript.OnUpdate = function () {
+        if (!enable) {
+            return;
+        }
+        console.log(localhero);
         var Heroes = EntitySystem.GetHeroesList();
         if (KeyBind.IsKeyDown()) {
             var NearHero = Input.GetNearestHeroToCursor(Enum.TeamType.TEAM_ENEMY);
             var NearHeroPos = NearHero.GetAbsOrigin();
-            if (localhero.GetAbsOrigin().Distance(NearHeroPos) <= 1300 && enable) // эта ебатория вычисляет хватает ли дистанции на хук. Если нет - то тебе скажут что ты даун
-             {
+            if (NearHero.GetAbsOrigin().Distance(localhero.GetAbsOrigin()) <= 1300) {
                 console.log("Получил местоположение героя");
                 localplayer.PrepareUnitOrders(Enum.UnitOrder.DOTA_UNIT_ORDER_CAST_POSITION, null, NearHeroPos, localhero.GetAbility("pudge_meat_hook"), Enum.PlayerOrderIssuer.DOTA_ORDER_ISSUER_HERO_ONLY, localhero);
                 console.log("Хук нашёл, ренжу получил");
